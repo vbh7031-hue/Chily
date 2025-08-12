@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chị còn thích em không? 🥹</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 50px;
+      color: #444;
+      overflow-x: hidden;
+    }
+
+    .container {
+      background-color: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
+      max-width: 600px;
+      margin: auto;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff69b4;
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .heart {
+      font-size: 40px;
+      margin: 20px 0;
+      color: #ff1493;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #ff69b4;
+      color: white;
+      padding: 15px 30px;
+      margin: 20px 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      position: relative;
+    }
+
+    .btn:hover {
+      background-color: #ff1493;
+    }
+
+    .message {
+      display: none;
+      font-size: 20px;
+      color: #d63384;
+      margin-top: 30px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
+    }
+
+    .message.show {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Trái tim rơi */
+    .falling-heart {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall 3s linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Chị còn thích em không? 🥹</h1>
+    <p>
+      Em biết em đôi khi ngốc nghếch, hơi phiền, hơi quậy...<br>
+      Nhưng mà thật lòng... em thương chị lắm đó 😳<br>
+      Chị vẫn còn thích em chứ hở? 💕
+    </p>
+
+    <div class="heart">💗 💗 💗</div>
+
+    <button class="btn" onclick="showLove()">Có, chị vẫn thích em 🥰</button>
+    <button class="btn" id="noBtn" onmouseover="moveNoBtn()">Không, chị không thích em nữa ❌</button>
+
+    <div class="message" id="loveMessage">
+      Yayyyy!!! Em biết mà! 😚💖<br>Chị Ly mãi là người em thương nhất!
+    </div>
+  </div>
+
+  <script>
+    function showLove() {
+      const msg = document.getElementById("loveMessage");
+      msg.classList.add("show");
+
+      // Tạo 10 trái tim rơi
+      for (let i = 0; i < 10; i++) {
+        createFallingHeart();
+      }
+    }
+
+    function createFallingHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("falling-heart");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 3000);
+    }
+
+    function moveNoBtn() {
+      const btn = document.getElementById("noBtn");
+      const x = Math.random() * (window.innerWidth - btn.offsetWidth - 50);
+      const y = Math.random() * (window.innerHeight - btn.offsetHeight - 50);
+      btn.style.position = "fixed";
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+    }
+  </script>
+</body>
+</html>
